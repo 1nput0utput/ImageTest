@@ -7,21 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35441A3272E5DB870227D430 /* Pods_ImageTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DED92A39BC92AD75ABE7CD1 /* Pods_ImageTest.framework */; };
 		EF2FA1311C1B6BF600886384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA1301C1B6BF600886384 /* AppDelegate.swift */; };
-		EF2FA1331C1B6BF600886384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA1321C1B6BF600886384 /* ViewController.swift */; };
 		EF2FA1361C1B6BF600886384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF2FA1341C1B6BF600886384 /* Main.storyboard */; };
 		EF2FA1381C1B6BF600886384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF2FA1371C1B6BF600886384 /* Assets.xcassets */; };
 		EF2FA13B1C1B6BF600886384 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF2FA1391C1B6BF600886384 /* LaunchScreen.storyboard */; };
+		EF2FA1491C1B6D0D00886384 /* BlurbNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA1441C1B6D0D00886384 /* BlurbNode.m */; };
+		EF2FA14A1C1B6D0D00886384 /* KittenNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA1461C1B6D0D00886384 /* KittenNode.mm */; };
+		EF2FA14B1C1B6D0D00886384 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA1481C1B6D0D00886384 /* ViewController.m */; };
+		EF2FA14D1C1B6DC100886384 /* UIImageView+Viewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA14C1C1B6DC100886384 /* UIImageView+Viewer.swift */; };
+		EF2FA14F1C1B6E0100886384 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2FA14E1C1B6E0100886384 /* PhotoViewController.swift */; };
+		EF650AFA1C1B70A500333CE1 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AF91C1B70A500333CE1 /* ImageScrollView.swift */; };
+		EF650AFC1C1B70D700333CE1 /* UIImage+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFB1C1B70D700333CE1 /* UIImage+AspectRatio.swift */; };
+		EF650AFE1C1B710000333CE1 /* CGSize+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFD1C1B710000333CE1 /* CGSize+AspectRatio.swift */; };
+		EF650B001C1B745300333CE1 /* CGRect+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFF1C1B745300333CE1 /* CGRect+Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DED92A39BC92AD75ABE7CD1 /* Pods_ImageTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		972096673EFA67BDF8127603 /* Pods-ImageTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageTest/Pods-ImageTest.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2FA12D1C1B6BF600886384 /* ImageTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2FA1301C1B6BF600886384 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF2FA1321C1B6BF600886384 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF2FA1351C1B6BF600886384 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF2FA1371C1B6BF600886384 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF2FA13A1C1B6BF600886384 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF2FA13C1C1B6BF600886384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF2FA1421C1B6D0C00886384 /* ImageTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageTest-Bridging-Header.h"; sourceTree = "<group>"; };
+		EF2FA1431C1B6D0D00886384 /* BlurbNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurbNode.h; sourceTree = "<group>"; };
+		EF2FA1441C1B6D0D00886384 /* BlurbNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurbNode.m; sourceTree = "<group>"; };
+		EF2FA1451C1B6D0D00886384 /* KittenNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KittenNode.h; sourceTree = "<group>"; };
+		EF2FA1461C1B6D0D00886384 /* KittenNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KittenNode.mm; sourceTree = "<group>"; };
+		EF2FA1471C1B6D0D00886384 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EF2FA1481C1B6D0D00886384 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EF2FA14C1C1B6DC100886384 /* UIImageView+Viewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Viewer.swift"; sourceTree = "<group>"; };
+		EF2FA14E1C1B6E0100886384 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		EF650AF91C1B70A500333CE1 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		EF650AFB1C1B70D700333CE1 /* UIImage+AspectRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AspectRatio.swift"; sourceTree = "<group>"; };
+		EF650AFD1C1B710000333CE1 /* CGSize+AspectRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+AspectRatio.swift"; sourceTree = "<group>"; };
+		EF650AFF1C1B745300333CE1 /* CGRect+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Helper.swift"; sourceTree = "<group>"; };
+		EFA0083E147A450D792366C1 /* Pods-ImageTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageTest/Pods-ImageTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35441A3272E5DB870227D430 /* Pods_ImageTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F5ECCF960B6AAC5605BA9EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DED92A39BC92AD75ABE7CD1 /* Pods_ImageTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C04167A72F2061A7A60A9CA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				972096673EFA67BDF8127603 /* Pods-ImageTest.debug.xcconfig */,
+				EFA0083E147A450D792366C1 /* Pods-ImageTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EF2FA1241C1B6BF600886384 = {
 			isa = PBXGroup;
 			children = (
 				EF2FA12F1C1B6BF600886384 /* ImageTest */,
 				EF2FA12E1C1B6BF600886384 /* Products */,
+				C04167A72F2061A7A60A9CA0 /* Pods */,
+				6F5ECCF960B6AAC5605BA9EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +98,24 @@
 		EF2FA12F1C1B6BF600886384 /* ImageTest */ = {
 			isa = PBXGroup;
 			children = (
+				EF650AFF1C1B745300333CE1 /* CGRect+Helper.swift */,
+				EF650AFD1C1B710000333CE1 /* CGSize+AspectRatio.swift */,
+				EF650AFB1C1B70D700333CE1 /* UIImage+AspectRatio.swift */,
+				EF650AF91C1B70A500333CE1 /* ImageScrollView.swift */,
+				EF2FA14E1C1B6E0100886384 /* PhotoViewController.swift */,
+				EF2FA14C1C1B6DC100886384 /* UIImageView+Viewer.swift */,
+				EF2FA1431C1B6D0D00886384 /* BlurbNode.h */,
+				EF2FA1441C1B6D0D00886384 /* BlurbNode.m */,
+				EF2FA1451C1B6D0D00886384 /* KittenNode.h */,
+				EF2FA1461C1B6D0D00886384 /* KittenNode.mm */,
+				EF2FA1471C1B6D0D00886384 /* ViewController.h */,
+				EF2FA1481C1B6D0D00886384 /* ViewController.m */,
 				EF2FA1301C1B6BF600886384 /* AppDelegate.swift */,
-				EF2FA1321C1B6BF600886384 /* ViewController.swift */,
 				EF2FA1341C1B6BF600886384 /* Main.storyboard */,
 				EF2FA1371C1B6BF600886384 /* Assets.xcassets */,
 				EF2FA1391C1B6BF600886384 /* LaunchScreen.storyboard */,
 				EF2FA13C1C1B6BF600886384 /* Info.plist */,
+				EF2FA1421C1B6D0C00886384 /* ImageTest-Bridging-Header.h */,
 			);
 			path = ImageTest;
 			sourceTree = "<group>";
@@ -71,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF2FA13F1C1B6BF600886384 /* Build configuration list for PBXNativeTarget "ImageTest" */;
 			buildPhases = (
+				0FA6664E3F78E00F0FE719F9 /* Check Pods Manifest.lock */,
 				EF2FA1291C1B6BF600886384 /* Sources */,
 				EF2FA12A1C1B6BF600886384 /* Frameworks */,
 				EF2FA12B1C1B6BF600886384 /* Resources */,
+				ACF5428AD13B4C7631E96C88 /* Embed Pods Frameworks */,
+				14D0ABF57C2D8EAAF8BBEC99 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,13 +189,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0FA6664E3F78E00F0FE719F9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		14D0ABF57C2D8EAAF8BBEC99 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageTest/Pods-ImageTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACF5428AD13B4C7631E96C88 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageTest/Pods-ImageTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EF2FA1291C1B6BF600886384 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF2FA1331C1B6BF600886384 /* ViewController.swift in Sources */,
+				EF650AFE1C1B710000333CE1 /* CGSize+AspectRatio.swift in Sources */,
+				EF650AFC1C1B70D700333CE1 /* UIImage+AspectRatio.swift in Sources */,
+				EF2FA1491C1B6D0D00886384 /* BlurbNode.m in Sources */,
+				EF2FA14A1C1B6D0D00886384 /* KittenNode.mm in Sources */,
 				EF2FA1311C1B6BF600886384 /* AppDelegate.swift in Sources */,
+				EF2FA14F1C1B6E0100886384 /* PhotoViewController.swift in Sources */,
+				EF650AFA1C1B70A500333CE1 /* ImageScrollView.swift in Sources */,
+				EF2FA14D1C1B6DC100886384 /* UIImageView+Viewer.swift in Sources */,
+				EF2FA14B1C1B6D0D00886384 /* ViewController.m in Sources */,
+				EF650B001C1B745300333CE1 /* CGRect+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,23 +360,30 @@
 		};
 		EF2FA1401C1B6BF600886384 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 972096673EFA67BDF8127603 /* Pods-ImageTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ImageTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.ImageTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageTest/ImageTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		EF2FA1411C1B6BF600886384 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFA0083E147A450D792366C1 /* Pods-ImageTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ImageTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.ImageTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageTest/ImageTest-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -284,6 +406,7 @@
 				EF2FA1411C1B6BF600886384 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
