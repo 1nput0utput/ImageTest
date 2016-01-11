@@ -1,7 +1,7 @@
 PODS:
-  - AsyncDisplayKit (1.9.3):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.3)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.3)
+  - AsyncDisplayKit (1.9.4):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.4)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.4)
   - pop (1.0.8)
 
 DEPENDENCIES:
@@ -9,7 +9,7 @@ DEPENDENCIES:
   - pop (~> 1.0)
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 87d340329280dba0363da3587a43f9d1bbe62aac
+  AsyncDisplayKit: 0932ff6f78364130a195039ab9a1c2ff63adc665
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
 
 COCOAPODS: 0.39.0

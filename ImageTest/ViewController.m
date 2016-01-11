@@ -44,6 +44,10 @@ static const NSInteger kMaxLitterSize = 100;        // max number of kitten cell
 #pragma mark -
 #pragma mark UIViewController.
 
+- (void)reloadViews {
+    [_tableView reloadData];
+}
+
 - (instancetype)init
 {
   if (!(self = [super init]))

@@ -18,6 +18,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate, ASNetworkImageNodeDel
     
     var photo: ASNetworkImageNode? {
         didSet {
+            debugPrint("Frame inside scrollView \(self.photo?.frame)")
             if let _ = self.photo?.image {
                 self.contentSize = self.photo!.image!.size
             } else {

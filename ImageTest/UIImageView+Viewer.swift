@@ -29,10 +29,9 @@ extension ASNetworkImageNode {
     
     
     func didTapImage(gesture: UITapGestureRecognizer) {
-        let photoViewer: PhotoViewController = PhotoViewController(imageView: self)
-        photoViewer.loadView()
+        let photoViewer: PhotoViewController = PhotoViewController()
         if(self.image != nil) {
-            photoViewer.presentFromRootViewController()
+            photoViewer.presentFromRootViewController(self)
         }
         self.removeExistingTapGesture()
     }

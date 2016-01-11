@@ -12,6 +12,7 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     let dismissButton = ASButtonNode()
     var index: Int = 0
     var viewToggleBlock: ((Bool) -> Void)!
+    var transitionDelegate: ImageransitioningDelegate?
     
     private var imageViewOriginalView: UIView?
     private var originalFrameRelativeToScreen: CGRect = CGRectZero
@@ -87,33 +88,22 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     override func shouldAutomaticallyForwardRotationMethods() -> Bool {
         return true
     }
-    override func loadView() {
-        
-        self.setNeedsStatusBarAppearanceUpdate()
-        
-        let view = UIView(frame: UIScreen.mainScreen().bounds)
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        self.view = view
-
-        self.setImageFrameInCurrentCoordinate()
-        
-        self.view.addSubview(self.scrollView)
-        
-        self.configureScrollView()
-        self.onZoomAction()
-        self.scrollView.showImageView(self.photo)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setNeedsStatusBarAppearanceUpdate()
-
-        self.setImageFrameInCurrentCoordinate()
- 
-        self.configureScrollView()
-        self.onZoomAction()
-        self.addDismissbutton()
+        
+                let view = UIView(frame: UIScreen.mainScreen().bounds)
+                view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+                self.view = view
+        
+//                self.setImageFrameInCurrentCoordinate()
+        
+                self.view.addSubview(self.scrollView)
+        
+            self.configureScrollView()
+               self.onZoomAction()
+                self.scrollView.showImageView(self.photo)
     }
     
     func onZoomAction() {
@@ -226,83 +216,38 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
         return frameToCenter
     }
     
-    func presentFromRootViewController() {
+    func presentFromRootViewController(imageView: ASNetworkImageNode) {
+        photo.image = imageView.image
         self.addDismissbutton()
        
         let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        appDelegate!.topViewController()!.presentViewController(self, animated: false, completion: nil)
+        transitionDelegate = ImageransitioningDelegate(image: imageView)
+        self.transitioningDelegate = transitionDelegate
+        self.modalPresentationStyle = .Custom
         
-        self.photo.bounds.size = self.imageViewFrameInWindow.size
-        self.photo.position = self.imageViewFrameInWindow.center
-        
-        self.scrollView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
-        self.setStatusBarHidden(true)
-        self.toggleTransition(true, completionBlock: { (animation, finished) -> Void in
-        })
-    }
-    
-    var viewInProgress: CGFloat = 0.0 {
-        didSet {
-            let opacity: CGFloat = PhotoViewController.POPTransition(self.viewInProgress, 0.0, 1.0)
-            self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(opacity)
-            self.scrollView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(opacity)
-        }
-    }
-    
-    func toggleImageViewFrame(showInScrollView: Bool) {
-        if !showInScrollView && self.view.bounds.width > self.view.bounds.height {
-            return
-        }
-        
-        let animation: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
-        animation.beginTime = CACurrentMediaTime()
-        let rect = self.appropriateFrameForImageSize(self.photo.image.size)
-        let newImageViewFrame: CGRect = self.centerFrameWithRect(rect)
+        appDelegate!.topViewController()!.presentViewController(self, animated: true, completion: nil)
 
-        animation.fromValue = NSValue(CGRect: showInScrollView ? self.imageViewFrameInWindow : newImageViewFrame)
-        animation.toValue = NSValue(CGRect: showInScrollView ? newImageViewFrame : self.imageViewFrameInWindow)
-        self.photo.view.pop_addAnimation(animation, forKey: "imageFrame")
-    }
-    
-    func toggleTransition(show: Bool, completionBlock: (animation: POPAnimation!, finished: Bool) -> Void) {
-        
-        self.toggleImageViewFrame(show)
-
-        var animation: AnyObject! = self.pop_animationForKey("showImage")
-        if (animation == nil) {
-            animation = POPSpringAnimation()
-            (animation as! POPSpringAnimation).delegate = self
-            
-            let property = POPAnimatableProperty.propertyWithName("showImage",
-                initializer: { (prop: POPMutableAnimatableProperty!) -> Void in
-                    prop.readBlock = {(obj: AnyObject!, values: UnsafeMutablePointer<CGFloat>) -> Void in
-                        values[0] = (obj as! PhotoViewController).viewInProgress
-                    }
-                    
-                    prop.writeBlock = {(obj: AnyObject!, values: UnsafePointer<CGFloat>) -> Void in
-                        (obj as! PhotoViewController).viewInProgress = values[0]
-                    }
-                    
-                    prop.threshold = 0.001
-                    
-            }) as! POPAnimatableProperty
-            
-            
-            (animation as! POPSpringAnimation).property = property
-            (animation as! POPSpringAnimation).completionBlock = completionBlock
-            self.pop_addAnimation((animation as! POPSpringAnimation), forKey: "showImage")
-        }
-        
-        (animation as! POPSpringAnimation).toValue = show ? 1.0 : 0.0
+//        self.photo.bounds.size = self.imageViewFrameInWindow.size
+//        self.photo.position = self.imageViewFrameInWindow.center
+//
+//        self.scrollView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
+//        self.setStatusBarHidden(true)
     }
     
     func dismissViewController() {
-        self.toggleTransition(false, completionBlock: { (animation: POPAnimation!, finished: Bool) -> Void in
-            self.removePanGesture()
-            self.photo.setupPhotoViewer()
-            self.imageViewOriginalView?.addSubnode(self.photo)
-            self.dismissViewControllerAnimated(false, completion: nil)
-        })
+//        debugPrint("Navigation \(self.presentingViewController.topvi)")
+//        if let viewController = self.presentingViewController as? UINavigationController {
+//            viewController.dismissViewControllerAnimated(true, completion: nil)
+//        }
+        self.removePanGesture()
+        self.dismissViewControllerAnimated(true, completion: nil)
+
+
+//        self.toggleTransition(false, completionBlock: { (animation: POPAnimation!, finished: Bool) -> Void in
+//            self.removePanGesture()
+//            self.photo.setupPhotoViewer()
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        })
     }
     
     //MARK: Gesture handling
@@ -402,15 +347,13 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        guard let imageView = self.photo else {
-            return
-        }
+  
         
         let isPortrait = size.height > size.width
-        let newSize = isPortrait ? imageView.image.size.sizeWithWidth(size.width) : imageView.image.size.sizeWithHeight(size.height)
+        let newSize = isPortrait ? self.photo.image!.size.sizeWithWidth(size.width) : self.photo.image!.size.sizeWithHeight(size.height)
         coordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
             UIView.animateWithDuration(context.transitionDuration(), animations: { () -> Void in
-                imageView.view.bounds.size = newSize
+                self.photo.view.bounds.size = newSize
                 let position = self.scrollView.centerFrame().center
                 self.photo.position = position
             })

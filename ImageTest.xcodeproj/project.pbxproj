@@ -21,6 +21,7 @@
 		EF650AFC1C1B70D700333CE1 /* UIImage+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFB1C1B70D700333CE1 /* UIImage+AspectRatio.swift */; };
 		EF650AFE1C1B710000333CE1 /* CGSize+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFD1C1B710000333CE1 /* CGSize+AspectRatio.swift */; };
 		EF650B001C1B745300333CE1 /* CGRect+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF650AFF1C1B745300333CE1 /* CGRect+Helper.swift */; };
+		EFC2D4841C41BD5500B1E063 /* ImageAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC2D4831C41BD5500B1E063 /* ImageAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		EF650AFD1C1B710000333CE1 /* CGSize+AspectRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+AspectRatio.swift"; sourceTree = "<group>"; };
 		EF650AFF1C1B745300333CE1 /* CGRect+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Helper.swift"; sourceTree = "<group>"; };
 		EFA0083E147A450D792366C1 /* Pods-ImageTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageTest/Pods-ImageTest.release.xcconfig"; sourceTree = "<group>"; };
+		EFC2D4831C41BD5500B1E063 /* ImageAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				EF2FA1391C1B6BF600886384 /* LaunchScreen.storyboard */,
 				EF2FA13C1C1B6BF600886384 /* Info.plist */,
 				EF2FA1421C1B6D0C00886384 /* ImageTest-Bridging-Header.h */,
+				EFC2D4831C41BD5500B1E063 /* ImageAnimator.swift */,
 			);
 			path = ImageTest;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				EF650AFC1C1B70D700333CE1 /* UIImage+AspectRatio.swift in Sources */,
 				EF2FA1491C1B6D0D00886384 /* BlurbNode.m in Sources */,
 				EF2FA14A1C1B6D0D00886384 /* KittenNode.mm in Sources */,
+				EFC2D4841C41BD5500B1E063 /* ImageAnimator.swift in Sources */,
 				EF2FA1311C1B6BF600886384 /* AppDelegate.swift in Sources */,
 				EF2FA14F1C1B6E0100886384 /* PhotoViewController.swift in Sources */,
 				EF650AFA1C1B70A500333CE1 /* ImageScrollView.swift in Sources */,
