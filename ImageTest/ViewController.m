@@ -22,7 +22,7 @@ static const NSInteger kLitterSize = 20;            // intial number of kitten c
 static const NSInteger kLitterBatchSize = 10;       // number of kitten cells to add to ASTableView
 static const NSInteger kMaxLitterSize = 100;        // max number of kitten cells allowed in ASTableView
 
-@interface ViewController () <ASTableViewDataSource, ASTableViewDelegate>
+@interface ViewController () <ASTableViewDataSource, ASTableViewDelegate, UINavigationControllerDelegate>
 {
   ASTableView *_tableView;
 
@@ -43,10 +43,6 @@ static const NSInteger kMaxLitterSize = 100;        // max number of kitten cell
 
 #pragma mark -
 #pragma mark UIViewController.
-
-- (void)reloadViews {
-    [_tableView reloadData];
-}
 
 - (instancetype)init
 {
@@ -97,6 +93,7 @@ static const NSInteger kMaxLitterSize = 100;        // max number of kitten cell
 {
   [super viewDidLoad];
 
+  self.navigationController.delegate = self;
   [self.view addSubview:_tableView];
 }
 
@@ -207,6 +204,27 @@ static const NSInteger kMaxLitterSize = 100;        // max number of kitten cell
     [_kittenDataSource removeObjectAtIndex:indexPath.row - 1];
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   }
+}
+
+#pragma Orientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+  return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+  return UIInterfaceOrientationPortrait;
+}
+
+- (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
+{
+  return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController
+{
+  return UIInterfaceOrientationPortrait;
 }
 
 @end

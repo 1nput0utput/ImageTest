@@ -11,11 +11,10 @@ import AsyncDisplayKit
 
 class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
     var viewInProgress: CGFloat = 0.0
-    
     var imageOriginalRect = CGRectZero
-    var currentImageRect = CGRectZero
     
-    var isPresentation: Bool?
+    var isPresenting = true
+    
     weak var imageView: ASNetworkImageNode?
     weak var toView: UIView?
     
@@ -41,13 +40,13 @@ class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
 
         let containerView: UIView = transitionContext.containerView()!
         
-        let animatingViewController: UIViewController = self.isPresentation! ? toViewController : fromViewController
+        let animatingViewController: UIViewController = self.isPresenting ? toViewController : fromViewController
         let animatingView = animatingViewController.view
         
         let appearedFrame = transitionContext.finalFrameForViewController(animatingViewController)
         let dismissedFrame: CGRect = CGRectMake(0.0, 0.0, appearedFrame.width, appearedFrame.height)
         
-        let frame = self.isPresentation! ? dismissedFrame : appearedFrame
+        let frame = self.isPresenting ? dismissedFrame : appearedFrame
         
         animatingView.frame = frame
         
@@ -84,16 +83,23 @@ class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
                 toViewController.view.alpha = 1
                 containerView.insertSubview(toViewController.view, belowSubview: fromView)
             }
-            
+            imageOriginalRect = (imageView?.view.convertRect(imageView!.bounds, toView: photoViewController.view))!
 
             let animation: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
             animation.beginTime = CACurrentMediaTime()
-            
             animation.fromValue = NSValue(CGRect: photoViewController.photo.frame)
             animation.toValue = NSValue(CGRect: imageOriginalRect)
             photoViewController.photo.view.pop_addAnimation(animation, forKey: "imageFrame")
+
+            let currentOrientation = photoViewController.interfaceOrientation
+            if (currentOrientation.isLandscape) {
+                let rotationAnimation = POPSpringAnimation(propertyNamed: kPOPLayerRotation)
+                rotationAnimation.beginTime = CACurrentMediaTime()
+                rotationAnimation.toValue = (currentOrientation == .LandscapeLeft) ? M_PI_2 : -M_PI_2
+                photoViewController.photo.layer.pop_addAnimation(rotationAnimation, forKey: "rotate")
+            }
         }
-        
+     
         var animation: AnyObject! = self.pop_animationForKey("showImage")
         if (animation == nil) {
             animation = POPSpringAnimation()
@@ -107,15 +113,13 @@ class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
                     
                     prop.writeBlock = {(obj: AnyObject!, values: UnsafePointer<CGFloat>) -> Void in
                         (obj as! ImageAnimator).viewInProgress = values[0]
-                       
                         let opacity: CGFloat = PhotoViewController.POPTransition(self.viewInProgress, 0.0, 1.0)
-                        if self.isPresentation! {
+                        if self.isPresenting {
                             animatingView.alpha = opacity
                         } else {
                             let opacity: CGFloat = PhotoViewController.POPTransition(self.viewInProgress, 1.0, 0.0)
                             if let photoViewController = fromViewController as? PhotoViewController{
                                 photoViewController.scrollView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(opacity)
-
                             }
                         }
                         
@@ -128,8 +132,8 @@ class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
             
             (animation as! POPSpringAnimation).property = property
             (animation as! POPSpringAnimation).completionBlock = {(animation: POPAnimation!, finished: Bool) -> Void in
-                            self.imageView?.hidden = self.isPresentation! ? true : false
-                            if !(self.isPresentation!) {
+                            self.imageView?.hidden = self.isPresenting ? true : false
+                            if !(self.isPresenting) {
                                 self.imageView!.setupPhotoViewer()
 
                             }
@@ -139,8 +143,11 @@ class ImageAnimator:  NSObject, UIViewControllerAnimatedTransitioning {
             self.pop_addAnimation((animation as! POPSpringAnimation), forKey: "showImage")
         }
         
+       
+     
+        
         (animation as! POPSpringAnimation).beginTime = CACurrentMediaTime()
-        (animation as! POPSpringAnimation).toValue = self.isPresentation! ? 1.0 : 1.0
+        (animation as! POPSpringAnimation).toValue = self.isPresenting ? 1.0 : 1.0
 
     }
     
@@ -189,13 +196,13 @@ class ImageransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         let animationController = self.animationController()
-        animationController.isPresentation = true
+        animationController.isPresenting = true
         return animationController
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let animationController = self.animationController()
-        animationController.isPresentation = false
+        animationController.isPresenting = false
         return animationController
     }
     

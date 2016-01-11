@@ -28,7 +28,6 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
             self.photo = image
             self.addPanGesture()
         }
-
     }
     
     convenience init() {
@@ -91,19 +90,19 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addPanGesture()
+
         self.setNeedsStatusBarAppearanceUpdate()
         
-                let view = UIView(frame: UIScreen.mainScreen().bounds)
-                view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-                self.view = view
+        let view = UIView(frame: UIScreen.mainScreen().bounds)
+        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.view = view
         
-//                self.setImageFrameInCurrentCoordinate()
+        self.view.addSubview(self.scrollView)
         
-                self.view.addSubview(self.scrollView)
-        
-            self.configureScrollView()
-               self.onZoomAction()
-                self.scrollView.showImageView(self.photo)
+        self.configureScrollView()
+        self.onZoomAction()
+        self.scrollView.showImageView(self.photo)
     }
     
     func onZoomAction() {
@@ -178,26 +177,6 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
         self.chromeViewShowing = show
     }
     
-    func appropriateFrameForImageSize(imageSize: CGSize) -> CGRect {
-        if (self.view == nil) {
-            return CGRectZero
-        }
-
-        let boundSize: CGSize = self.view.bounds.size
-        var frame: CGRect = self.photo.frame
-        
-        let aspect: CGFloat = imageSize.width / imageSize.height
-        
-        if (boundSize.width / aspect <= boundSize.height) {
-            frame.size = CGSizeMake(boundSize.width, boundSize.width / aspect)
-        }
-        else {
-            frame.size = CGSizeMake(boundSize.height * aspect, boundSize.height)
-        }
-    
-        return frame
-    }
-    
     func centerFrameWithRect(rectToCenter: CGRect) -> CGRect {
         let boundSize: CGSize = self.view.bounds.size
         var frameToCenter = rectToCenter
@@ -223,31 +202,13 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
         let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         transitionDelegate = ImageransitioningDelegate(image: imageView)
         self.transitioningDelegate = transitionDelegate
-        self.modalPresentationStyle = .Custom
-        
-        appDelegate!.topViewController()!.presentViewController(self, animated: true, completion: nil)
+//        self.modalPresentationStyle = .FullScreen
 
-//        self.photo.bounds.size = self.imageViewFrameInWindow.size
-//        self.photo.position = self.imageViewFrameInWindow.center
-//
-//        self.scrollView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
-//        self.setStatusBarHidden(true)
+        appDelegate!.topViewController()!.presentViewController(self, animated: true, completion: nil)
     }
     
     func dismissViewController() {
-//        debugPrint("Navigation \(self.presentingViewController.topvi)")
-//        if let viewController = self.presentingViewController as? UINavigationController {
-//            viewController.dismissViewControllerAnimated(true, completion: nil)
-//        }
-        self.removePanGesture()
         self.dismissViewControllerAnimated(true, completion: nil)
-
-
-//        self.toggleTransition(false, completionBlock: { (animation: POPAnimation!, finished: Bool) -> Void in
-//            self.removePanGesture()
-//            self.photo.setupPhotoViewer()
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        })
     }
     
     //MARK: Gesture handling
@@ -260,6 +221,7 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     func addPanGesture() {
         self.panGesture.addTarget(self, action: "didPan:")
         self.panGesture.delegate = self
+        self.photo.userInteractionEnabled = true
         self.photo.view.addGestureRecognizer(self.panGesture)
         self.panGesture.requireGestureRecognizerToFail(self.scrollView.singleTapGesture)
     }
@@ -347,8 +309,7 @@ class PhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-  
-        
+    
         let isPortrait = size.height > size.width
         let newSize = isPortrait ? self.photo.image!.size.sizeWithWidth(size.width) : self.photo.image!.size.sizeWithHeight(size.height)
         coordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
